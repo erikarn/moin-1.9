@@ -250,7 +250,7 @@ def quoteWikinameFS(wikiname, charset=config.charset):
     @rtype: string
     @return: quoted name, safe for any file system
     """
-    filename = wikiname.encode(charset)
+    filename = wikiname
 
     quoted = []
     location = 0
@@ -261,7 +261,9 @@ def quoteWikinameFS(wikiname, charset=config.charset):
         # Quote and append unsafe stuff
         quoted.append('(')
         for character in needle.group():
-            quoted.append('%02x' % ord(character))
+            # quote each byte too:
+            for byte in character.encode(charset):
+                quoted.append('%02x' % byte)
         quoted.append(')')
 
     # append rest of string
@@ -288,12 +290,6 @@ def unquoteWikiname(filename, charsets=[config.charset]):
     @rtype: Unicode String
     @return: WikiName
     """
-    ### Temporary fix start ###
-    # From some places we get called with Unicode strings
-    if isinstance(filename, type(u'')):
-        filename = filename.encode(config.charset)
-    ### Temporary fix end ###
-
     parts = []
     start = 0
     for needle in QUOTED.finditer(filename):
@@ -337,7 +333,7 @@ def timestamp2version(ts):
         We don't want to use floats, so we just scale by 1e6 to get
         an integer in usecs.
     """
-    return long(ts*1000000)
+    return ts*1000000
 
 def version2timestamp(v):
     """ Convert version number to UNIX timestamp (float).
