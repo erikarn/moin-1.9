@@ -284,6 +284,9 @@ else:
 
 # dircache stuff seems to be broken on win32 (at least for FAT32, maybe NTFS).
 # dircache stuff is also broken on POSIX if updates happen too fast (< 1s).
+#
+# [adrian] dircache has been removed anyway, so just don't bother.
+
 DCENABLED = 0 # set to 0 to completely disable dircache usage
 
 # Note: usage of the dc* functions below is deprecated, they'll get removed soon.
@@ -294,19 +297,17 @@ def dcdisable():
     global DCENABLED
     DCENABLED = 0
 
-import dircache
-
 def dclistdir(path):
     warnings.warn(dc_deprecated, DeprecationWarning, stacklevel=2)
     if sys.platform == 'win32' or not DCENABLED:
         return os.listdir(path)
     else:
-        return dircache.listdir(path)
+        return os.listdir(path)
 
 def dcreset():
     warnings.warn(dc_deprecated, DeprecationWarning, stacklevel=2)
     if sys.platform == 'win32' or not DCENABLED:
         return
     else:
-        return dircache.reset()
+        return
 
