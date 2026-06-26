@@ -152,7 +152,7 @@ def sendmail(request, to, subject, text, mail_from=None):
         except UnicodeError as e:
             logging.exception("unicode error [%r -> %r]" % (mail_from, to, ))
             return (0, str(e))
-        except smtplib.SMTPException, e:
+        except smtplib.SMTPException as e:
             logging.exception("smtp mail failed with an exception.")
             return (0, str(e))
         except (os.error, socket.error) as e:

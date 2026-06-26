@@ -1174,7 +1174,7 @@ class Page(object):
         if self.hilite_re:
             try:
                 self.formatter.set_highlight_re(self.hilite_re)
-            except re.error, err:
+            except re.error as err:
                 request.theme.add_msg(_('Invalid highlighting regular expression "%(regex)s": %(error)s') % {
                                           'regex': wikiutil.escape(self.hilite_re),
                                           'error': wikiutil.escape(str(err)),
@@ -1454,7 +1454,7 @@ class Page(object):
             if hasattr(MoinMoin, '__loader__'):
                 __file__ = os.path.join(MoinMoin.__loader__.archive, 'dummy')
             try:
-                exec code
+                exec(code)
             except "CacheNeedsUpdate": # convert the exception
                 raise Exception("CacheNeedsUpdate")
         finally:

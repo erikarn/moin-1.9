@@ -558,18 +558,18 @@ Example:
 
     package = ZipPackage(request, packagefile)
     if not package.isPackage():
-        print "The specified file %s is not a package." % packagefile
+        print("The specified file %s is not a package." % packagefile)
         raise SystemExit
 
     if args[1] == 'l':
-        print package.getScript()
+        print(package.getScript())
     elif args[1] == 'i':
         if package.installPackage():
-            print "Installation was successful!"
+            print("Installation was successful!")
         else:
-            print "Installation failed."
+            print("Installation failed.")
         if package.msg:
-            print package.msg
+            print(package.msg)
 
 if __name__ == '__main__':
     main()

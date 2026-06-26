@@ -6,8 +6,7 @@ MoinMoin - base classes for datastructs.
 @license: GPL, see COPYING for details
 """
 
-from UserDict import DictMixin
-
+from collections.abc import Mapping
 
 class GroupDoesNotExistError(Exception):
     """
@@ -256,7 +255,7 @@ class GreedyGroup(BaseGroup):
                                                              self.member_groups)
 
 
-class BaseDict(object, DictMixin):
+class BaseDict(Mapping):
 
     def __init__(self, request, name, backend):
         """

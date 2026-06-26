@@ -727,7 +727,7 @@ Try a different name.""", wiki=True) % (wikiutil.escape(newpagename), )
             event = PageDeletedEvent(request, self, comment)
             send_event(event)
 
-        except self.SaveError, message:
+        except self.SaveError as message:
             # XXX do not only catch base class SaveError here, but
             # also the derived classes, so we can give better err msgs
             success = False
