@@ -151,7 +151,7 @@ class Page(object):
         self.include_self = kw.get('include_self', 0)
 
         formatter = kw.get('formatter', None)
-        if isinstance(formatter, (str, unicode)): # mimetype given
+        if isinstance(formatter, str): # mimetype given
             mimetype = str(formatter)
             self.formatter = None
             self.output_mimetype = mimetype
@@ -738,7 +738,7 @@ class Page(object):
         @rtype: str
         @return: complete url of this page, including scriptname
         """
-        assert(isinstance(anchor, (type(None), str, unicode)))
+        assert(isinstance(anchor, (type(None), str)))
         # Create url, excluding scriptname
         url = wikiutil.quoteWikinameURL(self.page_name)
         if querystr:
