@@ -60,7 +60,7 @@ def decodeUnknownInput(text):
     @return: decoded text (maybe wrong)
     """
     # Shortcut for unicode input
-    if isinstance(text, unicode):
+    if isinstance(text, str):
         return text
 
     try:
@@ -113,7 +113,7 @@ def url_unquote(s, want_unicode=None):
         assert want_unicode is None
     except AssertionError:
         log.exception("call with deprecated want_unicode param, please fix caller")
-    if isinstance(s, unicode):
+    if isinstance(s, str):
         s = s.encode(config.charset)
     try:
         return werkzeug.urls.url_unquote(s, charset=config.charset, errors='strict')
@@ -159,7 +159,7 @@ def makeQueryString(qstr=None, want_unicode=None, **kw):
         log.exception("call with deprecated want_unicode param, please fix caller")
     if qstr is None:
         qstr = {}
-    elif isinstance(qstr, (str, unicode)):
+    elif isinstance(qstr, str):
         return qstr
     if isinstance(qstr, dict):
         qstr.update(kw)
@@ -186,7 +186,7 @@ def quoteWikinameURL(pagename, charset=config.charset):
 
 
 def escape(s, quote=None):
-    if not isinstance(s, (str, unicode)):
+    if not isinstance(s, str):
         s = str(s)
     # [adrian] cgi.escape and html.escape do escape slightly different things
     # and have different default behaviour.
@@ -1345,7 +1345,7 @@ def parse_quoted_separated_ext(args, separator=None, name_value_separator=None,
     idx = 0
     assert name_value_separator is None or name_value_separator != separator
     assert name_value_separator is None or len(name_value_separator) == 1
-    if not isinstance(args, unicode):
+    if not isinstance(args, str):
         raise TypeError('args must be unicode')
     max = len(args)
     result = []         # result list
@@ -1540,7 +1540,7 @@ def get_bool(request, arg, name=None, default=None):
     assert default is None or isinstance(default, bool)
     if arg is None:
         return default
-    elif not isinstance(arg, unicode):
+    elif not isinstance(arg, str):
         raise TypeError('Argument must be None or unicode')
     arg = arg.lower()
     if arg in [u'0', u'false', u'no']:
@@ -1575,7 +1575,7 @@ def get_int(request, arg, name=None, default=None):
     assert default is None or isinstance(default, (int, long))
     if arg is None:
         return default
-    elif not isinstance(arg, unicode):
+    elif not isinstance(arg, str):
         raise TypeError('Argument must be None or unicode')
     try:
         return int(arg)
@@ -1606,7 +1606,7 @@ def get_float(request, arg, name=None, default=None):
     assert default is None or isinstance(default, (int, long, float))
     if arg is None:
         return default
-    elif not isinstance(arg, unicode):
+    elif not isinstance(arg, str):
         raise TypeError('Argument must be None or unicode')
     try:
         return float(arg)
@@ -1637,7 +1637,7 @@ def get_complex(request, arg, name=None, default=None):
     assert default is None or isinstance(default, (int, long, float, complex))
     if arg is None:
         return default
-    elif not isinstance(arg, unicode):
+    elif not isinstance(arg, str):
         raise TypeError('Argument must be None or unicode')
     try:
         # allow writing 'i' instead of 'j'
@@ -1666,11 +1666,11 @@ def get_unicode(request, arg, name=None, default=None):
     @rtype: unicode or None
     @returns: the unicode string (or default value)
     """
-    assert default is None or isinstance(default, unicode)
+    assert default is None or isinstance(default, str)
     if arg is None:
         return default
-    elif not isinstance(arg, unicode):
-        raise TypeError('Argument must be None or unicode')
+    elif not isinstance(arg, str):
+        raise TypeError('Argument must be None or str')
 
     return arg
 
@@ -1699,7 +1699,7 @@ def get_choice(request, arg, name=None, choices=[None], default_none=False):
             return None
         else:
             return choices[0]
-    elif not isinstance(arg, unicode):
+    elif not isinstance(arg, str):
         raise TypeError('Argument must be None or unicode')
     elif not arg in choices:
         _ = request.getText
@@ -1797,7 +1797,7 @@ class required_arg:
         Initialise a required_arg
         @param argtype: the type the argument should have
         """
-        if not (argtype in (bool, int, long, float, complex, unicode) or
+        if not (argtype in (bool, int, float, complex) or
                 isinstance(argtype, (IEFArgument, tuple, list))):
             raise TypeError("argtype must be a valid type")
         self.argtype = argtype
@@ -1809,7 +1809,7 @@ def invoke_extension_function(request, function, args, fixed_args=[]):
     function with the arguments.
 
     If the macro function has a default value that is a bool,
-    int, long, float or unicode object, then the given value
+    int, float or str object, then the given value
     is converted to the type of that default value before passing
     it to the macro function. That way, macros need not call the
     wikiutil.get_* functions for any arguments that have a default.
@@ -1824,7 +1824,7 @@ def invoke_extension_function(request, function, args, fixed_args=[]):
     def _convert_arg(request, value, default, name=None):
         """
         Using the get_* functions, convert argument to the type of the default
-        if that is any of bool, int, long, float or unicode; if the default
+        if that is any of bool, int, float or str; if the default
         is the type itself then convert to that type (keeps None) or if the
         default is a list require one of the list items.
 
@@ -1839,7 +1839,7 @@ def invoke_extension_function(request, function, args, fixed_args=[]):
             return get_float(request, value, name, default)
         elif isinstance(default, complex):
             return get_complex(request, value, name, default)
-        elif isinstance(default, unicode):
+        elif isinstance(default, str):
             return get_unicode(request, value, name, default)
         elif isinstance(default, (tuple, list)):
             return get_choice(request, value, name, default)
@@ -1875,7 +1875,7 @@ def invoke_extension_function(request, function, args, fixed_args=[]):
     trailing_args = []
 
     if args:
-        assert isinstance(args, unicode)
+        assert isinstance(args, str)
 
         positional, keyword, trailing = parse_quoted_separated(args)
 
@@ -2539,7 +2539,7 @@ def createTicket(request, tm=None, action=None, pagename=None):
 
     hmac_data = []
     for value in [tm, pagename, action, sid, uid, ]:
-        if isinstance(value, unicode):
+        if isinstance(value, str):
             value = value.encode('utf-8')
         hmac_data.append(value)
 

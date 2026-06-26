@@ -36,19 +36,9 @@ class Error(Exception):
         """
         self.message = message
 
-    def __unicode__(self):
-        """ Return unicode error message """
-        if isinstance(self.message, str):
-            return unicode(self.message, config.charset)
-        else:
-            return unicode(self.message)
-
     def __str__(self):
         """ Return encoded message """
-        if isinstance(self.message, unicode):
-            return self.message.encode(config.charset)
-        else:
-            return str(self.message)
+        return str(self.message)
 
     def __getitem__(self, item):
         """ Make it possible to access attributes like a dict """

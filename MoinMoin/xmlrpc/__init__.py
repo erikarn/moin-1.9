@@ -99,7 +99,7 @@ class XmlRpcBase:
         @rtype: str
         @return: xmlrpc Binary object
         """
-        if isinstance(text, unicode):
+        if isinstance(text, str):
             text = text.encode('utf-8')
         else:
             if config.charset != 'utf-8':
@@ -1175,7 +1175,7 @@ class XmlRpc2(XmlRpcBase):
         @rtype: unicode
         @return: text
         """
-        if not isinstance(text, unicode):
+        if not isinstance(text, str):
             text = unicode(text, 'utf-8')
         return text
 
@@ -1187,7 +1187,7 @@ class XmlRpc2(XmlRpcBase):
         @rtype: str
         @return: text encoded in utf-8
         """
-        if isinstance(text, unicode):
+        if isinstance(text, str):
             text = text.encode('utf-8')
         elif config.charset != 'utf-8':
             text = unicode(text, config.charset).encode('utf-8')
