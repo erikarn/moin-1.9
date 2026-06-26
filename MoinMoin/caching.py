@@ -236,7 +236,7 @@ class CacheEntry:
                 self._fileobj.close()
                 self._fileobj = None
                 if 'w' in self._mode:
-                    filesys.chmod(self._tmp_fname, 0666 & config.umask) # fix mode that mkstemp chose
+                    filesys.chmod(self._tmp_fname, 0o666 & config.umask) # fix mode that mkstemp chose
                     # this is either atomic or happening with real locks set:
                     filesys.rename(self._tmp_fname, self._fname)
         finally:

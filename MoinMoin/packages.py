@@ -139,7 +139,7 @@ class ScriptEngine:
             if not os.path.exists(target):
                 self._extractToFile(zipname, target)
                 if os.path.exists(target):
-                    filesys.chmod(target, 0666 & config.umask)
+                    filesys.chmod(target, 0o666 & config.umask)
                     action = 'ATTNEW'
                     edit_logfile_append(self, pagename, path, rev, action, logname='edit-log',
                                        comment=u'%(filename)s' % {"filename": filename}, author=author)
@@ -364,7 +364,7 @@ class ScriptEngine:
             target = os.path.join(attachments, filename)
             self._extractToFile(zipname, target)
             if os.path.exists(target):
-                filesys.chmod(target, 0666 & config.umask)
+                filesys.chmod(target, 0o666 & config.umask)
         else:
             self.msg += u"action replace underlay attachment: not enough rights - nothing done \n"
 
