@@ -378,7 +378,7 @@ class FieldActions(object):
             field_mappings.add_prefix(self._fieldname)
         if 'slot' in info[3]:
             purposes = info[3]['slot']
-            if isinstance(purposes, basestring):
+            if isinstance(purposes, str):
                 field_mappings.add_slot(self._fieldname, purposes)
             else:
                 slotnum = None

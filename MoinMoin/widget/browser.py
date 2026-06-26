@@ -113,7 +113,7 @@ class DataBrowserWidget(base.Widget):
             selected = ' selected'
         else:
             selected = ''
-        assert(isinstance(item, basestring))
+        assert(isinstance(item, str))
         if ntitem is None:
             ntitem = item
         return '<option value="%s"%s>%s</option>' % (

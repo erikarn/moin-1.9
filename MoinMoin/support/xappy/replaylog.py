@@ -205,7 +205,7 @@ class ReplayLog(object):
         if xapargname is not None:
             return xapargname
 
-        if isinstance(arg, basestring):
+        if isinstance(arg, str):
             if isinstance(arg, unicode):
                 arg = arg.encode('utf-8')
             return 'str(%d,%s)' % (len(arg), arg)

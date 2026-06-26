@@ -316,7 +316,7 @@ class SearchResults(object):
 
         """
         prefixes = {}
-        if isinstance(fields, basestring):
+        if isinstance(fields, str):
             fields = [fields]
         for field in fields:
             try:
@@ -612,7 +612,7 @@ class SearchResults(object):
             raise errors.SearchError("Facets unsupported with this release of xapian")
         if self._facetspy is None:
             raise _errors.SearchError("Facet selection wasn't enabled when the search was run")
-        if isinstance(required_facets, basestring):
+        if isinstance(required_facets, str):
             required_facets = [required_facets]
         scores = []
         facettypes = {}
@@ -1025,7 +1025,7 @@ class SearchConnection(object):
                 break
 
         if facettype == 'float':
-            if isinstance(val, basestring):
+            if isinstance(val, str):
                 val = [float(v) for v in val.split(',', 2)]
             assert(len(val) == 2)
             try:
@@ -1054,9 +1054,9 @@ class SearchConnection(object):
         if self._index is None:
             raise _errors.SearchError("SearchConnection has been closed")
 
-        if isinstance(allow, basestring):
+        if isinstance(allow, str):
             allow = (allow, )
-        if isinstance(deny, basestring):
+        if isinstance(deny, str):
             deny = (deny, )
         if allow is not None and len(allow) == 0:
             allow = None
@@ -1066,9 +1066,9 @@ class SearchConnection(object):
             raise _errors.SearchError("Cannot specify both `allow` and `deny` "
                                       "(got %r and %r)" % (allow, deny))
 
-        if isinstance(default_allow, basestring):
+        if isinstance(default_allow, str):
             default_allow = (default_allow, )
-        if isinstance(default_deny, basestring):
+        if isinstance(default_deny, str):
             default_deny = (default_deny, )
         if default_allow is not None and len(default_allow) == 0:
             default_allow = None
@@ -1356,11 +1356,11 @@ class SearchConnection(object):
         if allow is not None and deny is not None:
             raise _errors.SearchError("Cannot specify both `allow` and `deny`")
 
-        if isinstance(ids, basestring):
+        if isinstance(ids, str):
             ids = (ids, )
-        if isinstance(allow, basestring):
+        if isinstance(allow, str):
             allow = (allow, )
-        if isinstance(deny, basestring):
+        if isinstance(deny, str):
             deny = (deny, )
 
         # Set "allow" to contain a list of all the fields to use.
@@ -1656,7 +1656,7 @@ class SearchConnection(object):
         matchspies = []
 
         # First, add a matchspy for any gettags fields
-        if isinstance(gettags, basestring):
+        if isinstance(gettags, str):
             if len(gettags) != 0:
                 gettags = [gettags]
         tagspy = None

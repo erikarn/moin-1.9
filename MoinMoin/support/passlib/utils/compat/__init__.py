@@ -109,8 +109,8 @@ else:
         assert isinstance(s, str)
         return s.decode("unicode_escape")
 
-    unicode_or_bytes_types = (basestring,)
-    native_string_types = (basestring,)
+    unicode_or_bytes_types = (str,)
+    native_string_types = (str,)
 
 # shorter preferred aliases
 unicode_or_bytes = unicode_or_bytes_types
@@ -355,7 +355,7 @@ else:
                 first = False
             else:
                 write(sep)
-            if not isinstance(arg, basestring):
+            if not isinstance(arg, str):
                 arg = str(arg)
             write(arg)
         write(end)

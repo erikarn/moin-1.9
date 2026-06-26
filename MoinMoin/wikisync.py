@@ -379,9 +379,9 @@ class Tag(object):
         @param current_rev: The related local revision.
         @param direction: The direction of the sync, encoded as an integer.
         """
-        assert (isinstance(remote_wiki, basestring) and isinstance(remote_rev, int)
+        assert (isinstance(remote_wiki, str) and isinstance(remote_rev, int)
                 and isinstance(current_rev, int) and isinstance(direction, int)
-                and isinstance(normalised_name, basestring))
+                and isinstance(normalised_name, str))
         self.remote_wiki = remote_wiki
         self.remote_rev = remote_rev
         self.current_rev = current_rev

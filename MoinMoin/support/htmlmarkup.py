@@ -292,7 +292,7 @@ class Fragment(object):
 
     def append(self, node):
         """Append an element or string as child node."""
-        if isinstance(node, (Element, Markup, basestring, int, float, long)):
+        if isinstance(node, (Element, Markup, str, int, float, long)):
             # For objects of a known/primitive type, we avoid the check for
             # whether it is iterable for better performance
             self.children.append(node)

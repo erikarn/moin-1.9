@@ -43,7 +43,7 @@ class EnvironProxy(property):
         @param name: key (or factory for convenience)
         @param default: literal object or callable
         """
-        if not isinstance(name, basestring):
+        if not isinstance(name, str):
             default = name
             name = default.__name__
         self.name = 'moin.' + name

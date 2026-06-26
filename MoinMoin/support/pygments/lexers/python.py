@@ -370,7 +370,7 @@ class Python2Lexer(RegexLexer):
         ],
         'builtins': [
             (words((
-                '__import__', 'abs', 'all', 'any', 'apply', 'basestring', 'bin',
+                '__import__', 'abs', 'all', 'any', 'apply', 'str', 'bin',
                 'bool', 'buffer', 'bytearray', 'bytes', 'callable', 'chr', 'classmethod',
                 'cmp', 'coerce', 'compile', 'complex', 'delattr', 'dict', 'dir', 'divmod',
                 'enumerate', 'eval', 'execfile', 'exit', 'file', 'filter', 'float',
@@ -750,7 +750,7 @@ class CythonLexer(RegexLexer):
         ],
         'builtins': [
             (words((
-                '__import__', 'abs', 'all', 'any', 'apply', 'basestring', 'bin',
+                '__import__', 'abs', 'all', 'any', 'apply', 'str', 'bin',
                 'bool', 'buffer', 'bytearray', 'bytes', 'callable', 'chr',
                 'classmethod', 'cmp', 'coerce', 'compile', 'complex', 'delattr',
                 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'execfile', 'exit',
