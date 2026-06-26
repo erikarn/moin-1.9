@@ -206,8 +206,8 @@ class ActionClass(object):
             local = MoinLocalWiki(self.request, params["localPrefix"], params["pageList"])
             try:
                 remote = MoinRemoteWiki(self.request, params["remoteWiki"], params["remotePrefix"], params["pageList"], name, password, verbose=debug)
-            except (UnsupportedWikiException, NotAllowedException), (msg, ):
-                raise ActionStatus(msg, "error")
+            except (UnsupportedWikiException, NotAllowedException) as e:
+                raise ActionStatus(e.args[0], "error")
 
             if not remote.valid:
                 raise ActionStatus(_("The ''remoteWiki'' is unknown.", wiki=True), "error")

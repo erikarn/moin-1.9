@@ -332,8 +332,8 @@ class MoinLocalWiki(RemoteWiki):
         page = PageEditor(self.request, pagename)
         try:
             page.deletePage(comment)
-        except PageEditor.AccessDenied, (msg, ):
-            return msg
+        except PageEditor.AccessDenied as e:
+            return e.args[0]
         return ""
 
     def get_interwiki_name(self):

@@ -605,7 +605,7 @@ class XmlRpcBase:
             elif self.version == 1:
                 newtext = self._inlob(pagetext)
             msg = page.saveText(newtext, 0)
-        except page.SaveError, msg:
+        except page.SaveError as msg:
             logging.error("SaveError: %s" % msg)
             return xmlrpclib.Fault(1, "%s" % msg)
 
@@ -636,7 +636,7 @@ class XmlRpcBase:
 
         try:
             editor.renamePage(newpagename)
-        except PageEditor.SaveError, error:
+        except PageEditor.SaveError as error:
             return xmlrpclib.Fault(1, "Rename failed: %s" % (str(error), ))
 
         return xmlrpclib.Boolean(1)
@@ -664,7 +664,7 @@ class XmlRpcBase:
 
         try:
             editor.revertPage(rev)
-        except PageEditor.SaveError, error:
+        except PageEditor.SaveError as error:
             return xmlrpclib.Fault(1, "Revert failed: %s" % (str(error), ))
 
         return xmlrpclib.Boolean(1)
@@ -1001,8 +1001,8 @@ class XmlRpcBase:
         if diff is None: # delete the page
             try:
                 currentpage.deletePage(comment)
-            except PageEditor.AccessDenied, (msg, ):
-                return xmlrpclib.Fault("NOT_ALLOWED", msg)
+            except PageEditor.AccessDenied as e:
+                return xmlrpclib.Fault("NOT_ALLOWED", msg.args[0])
             return currentpage.get_real_rev()
 
         # base revision used for the diff
