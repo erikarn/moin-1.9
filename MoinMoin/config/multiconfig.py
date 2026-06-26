@@ -583,36 +583,36 @@ also the spelling of the directory name.
         Since each configured plugin path has unique plugins, we load the
         plugin packages as "moin_plugin_<sha1(path)>.plugin".
         """
-        import imp
+        import importlib
+        import threading
 
         plugin_dirs = [self.plugin_dir] + self.plugin_dirs
         self._plugin_modules = []
 
         try:
             # Lock other threads while we check and import
-            imp.acquire_lock()
-            try:
+            lock = threading.Lock()
+            with lock:
                 for pdir in plugin_dirs:
-                    csum = 'p_%s' % hashlib.new('sha1', pdir).hexdigest()
+                    csum = 'p_%s' % hashlib.new('sha1', pdir.encode()).hexdigest()
                     modname = '%s.%s' % (self.siteid, csum)
                     # If the module is not loaded, try to load it
                     if not modname in sys.modules:
                         # Find module on disk and try to load - slow!
                         abspath = os.path.abspath(pdir)
                         parent_dir, pname = os.path.split(abspath)
-                        fp, path, info = imp.find_module(pname, [parent_dir])
-                        try:
-                            # Load the module and set in sys.modules
-                            module = imp.load_module(modname, fp, path, info)
-                            setattr(sys.modules[self.siteid], 'csum', module)
-                        finally:
-                            # Make sure fp is closed properly
-                            if fp:
-                                fp.close()
+                        init_file = os.path.join(abspath, '__init__.py')
+                        if not os.path.exists(init_file):
+                            continue
+                        spec = importlib.util.spec_from_file_location(modname, init_file,
+                          submodule_search_locations=[abspath])
+                        if spec is not None:
+                            module = importlib.util.module_from_spec(spec)
+                            sys.modules[modname] = module
+                            spec.loader.exec_module(module)
+                            setattr(sys.modules[self.siteid], csum, module)
                     if modname not in self._plugin_modules:
                         self._plugin_modules.append(modname)
-            finally:
-                imp.release_lock()
         except ImportError as err:
             msg = """
 Could not import plugin package "%(path)s" because of ImportError:
