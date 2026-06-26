@@ -10,7 +10,7 @@
     @license: GNU GPL, see COPYING for details.
 """
 
-import cgi
+import html
 import codecs
 import hmac, hashlib
 import os
@@ -188,8 +188,11 @@ def quoteWikinameURL(pagename, charset=config.charset):
 def escape(s, quote=None):
     if not isinstance(s, (str, unicode)):
         s = str(s)
-    return cgi.escape(s, quote)
-
+    # [adrian] cgi.escape and html.escape do escape slightly different things
+    # and have different default behaviour.
+    if quote is None:
+        quote = False
+    return html.escape(s, quote=quote)
 
 def clean_input(text, max_len=201):
     """ Clean input:
