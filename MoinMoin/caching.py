@@ -267,7 +267,7 @@ class CacheEntry:
                     self.write(content)
                 finally:
                     self.close()
-        except (pickle.PicklingError, OSError, IOError, ValueError), err:
+        except (pickle.PicklingError, OSError, IOError, ValueError) as err:
             raise CacheError(str(err))
 
     def content(self):
@@ -283,7 +283,7 @@ class CacheEntry:
             elif self.use_encode:
                 data = data.decode(config.charset)
             return data
-        except (pickle.UnpicklingError, IOError, EOFError, ValueError), err:
+        except (pickle.UnpicklingError, IOError, EOFError, ValueError) as err:
             raise CacheError(str(err))
 
     def remove(self):

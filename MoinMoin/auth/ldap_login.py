@@ -161,7 +161,7 @@ class LDAPAuth(BaseAuth):
                     try:
                         l.start_tls_s()
                         logging.debug("Using TLS to %r." % server)
-                    except (ldap.SERVER_DOWN, ldap.CONNECT_ERROR), err:
+                    except (ldap.SERVER_DOWN, ldap.CONNECT_ERROR) as err:
                         logging.warning("Couldn't establish TLS to %r (err: %s)." % (server, str(err)))
                         raise
 

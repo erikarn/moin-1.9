@@ -443,7 +443,7 @@ class ConfigFunctionality(object):
                 raise error.ConfigurationError("Wiki is configured to use passlib, but importing passlib failed [%s]!" % str(err))
             try:
                 self.cache.pwd_context = CryptContext(**self.passlib_crypt_context)
-            except (ValueError, KeyError, TypeError, UserWarning), err:
+            except (ValueError, KeyError, TypeError, UserWarning) as err:
                 # ValueError: wrong configuration values
                 # KeyError: unsupported hash (seen with passlib 1.3)
                 # TypeError: configuration value has wrong type

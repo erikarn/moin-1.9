@@ -669,7 +669,7 @@ class Connection(object):
                 self.process_input()
             except (EOFError, KeyboardInterrupt):
                 break
-            except (select.error, socket.error), e:
+            except (select.error, socket.error) as e:
                 if e[0] == errno.EBADF: # Socket was closed by Request.
                     break
                 raise

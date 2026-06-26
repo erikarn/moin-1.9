@@ -198,7 +198,7 @@ class LogFile:
                 return count
             finally:
                 f.close()
-        except (OSError, IOError), err:
+        except (OSError, IOError) as err:
             if err.errno == errno.ENOENT:
                 return 0
             raise

@@ -110,12 +110,12 @@ def getblacklist(request, pagename, do_update):
                                        # permanent polling for every save when there
                                        # is no updated master page
 
-            except (socket.error, xmlrpclib.ProtocolError), err:
+            except (socket.error, xmlrpclib.ProtocolError) as err:
                 logging.error('Timeout / socket / protocol error when accessing %s: %s' % (master_url, str(err)))
                 # update cache to wait before the next try
                 failure.update("")
 
-            except (xmlrpclib.Fault, ), err:
+            except (xmlrpclib.Fault, ) as err:
                 logging.error('Fault on %s: %s' % (master_url, str(err)))
                 # update cache to wait before the next try
                 failure.update("")
