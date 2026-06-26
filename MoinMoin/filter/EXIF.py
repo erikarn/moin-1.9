@@ -96,7 +96,7 @@
 #               Added Nikon, Fujifilm, Casio MakerNotes.
 # 2003-11-30 CEC Fixed problem with canon_decode_tag() not creating an
 #               IFD_Tag() object.
-# 2004-02-15 CEC Finally fixed bit shift warning by converting Y to 0L.
+# 2004-02-15 CEC Finally fixed bit shift warning by converting Y to 0.
 #
 # ---------------------------- End original notices ------------------------- #
 
@@ -1165,7 +1165,7 @@ class EXIF_header:
             val=s2n_motorola(slice)
         # Sign extension ?
         if signed:
-            msb=1L << (8*length-1)
+            msb=1 << (8*length-1)
             if val & msb:
                 val=val-(msb << 1)
         return val
@@ -1381,7 +1381,7 @@ class EXIF_header:
             elif note.values[0:7] == [78, 105, 107, 111, 110, 0, 2]:
                 if self.debug:
                     print "Looks like a labeled type 2 Nikon MakerNote"
-                if note.values[12:14] != [0, 42] and note.values[12:14] != [42L, 0L]:
+                if note.values[12:14] != [0, 42] and note.values[12:14] != [42, 0]:
                     raise ValueError("Missing marker tag '42' in MakerNote.")
                 # skip the Makernote label and the TIFF header
                 self.dump_IFD(note.field_offset+10+8, 'MakerNote',
