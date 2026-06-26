@@ -495,8 +495,8 @@ def expand_indent(line):
 
 def message(text):
     """Print a message."""
-    # print >> sys.stderr, options.prog + ': ' + text
-    # print >> sys.stderr, text
+    # print(options.prog + ': ' + text, file=sys.stderr)
+    # print(text, file=sys.stderr)
     print text
 
 

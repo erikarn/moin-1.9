@@ -530,7 +530,7 @@ class ZipPackage(Package, ScriptEngine):
 def main():
     args = sys.argv
     if len(args)-1 not in (2, 3) or args[1] not in ('l', 'i'):
-        print >> sys.stderr, """MoinMoin Package Installer v%(version)i
+        print("""MoinMoin Package Installer v%(version)i
 
 %(myname)s action packagefile [request URL]
 
@@ -543,7 +543,7 @@ Example:
 
 %(myname)s i ../package.zip
 
-""" % {"version": MAX_VERSION, "myname": os.path.basename(args[0])}
+""" % {"version": MAX_VERSION, "myname": os.path.basename(args[0])}, file=sys.stderr)
         raise SystemExit
 
     packagefile = args[2]

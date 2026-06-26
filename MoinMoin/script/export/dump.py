@@ -187,8 +187,8 @@ General syntax: moin [options] export dump [dump-options]
         urlbase = request.url # save wiki base url
         for pagename in pages:
             # we have the same name in URL and FS
-            file = wikiutil.quoteWikinameURL(pagename)
-            script.log('Writing "%s"...' % file)
+            file_name = wikiutil.quoteWikinameURL(pagename)
+            script.log('Writing "%s"...' % file_name)
             try:
                 pagehtml = ''
                 request.url = urlbase + pagename # add current pagename to url base
@@ -199,14 +199,14 @@ General syntax: moin [options] export dump [dump-options]
                     pagehtml = request.redirectedOutput(page.send_page, count_hit=0, content_only=1)
                 except:
                     errcnt = errcnt + 1
-                    print >> sys.stderr, "*** Caught exception while writing page!"
-                    print >> errlog, "~" * 78
-                    print >> errlog, file # page filename
+                    print("*** Caught exception while writing page!", file=sys.stderr)
+                    print("~" * 78, file=errlog)
+                    print(file_name, file=errlog) # page filename
                     import traceback
                     traceback.print_exc(None, errlog)
             finally:
                 timestamp = time.strftime("%Y-%m-%d %H:%M")
-                filepath = os.path.join(outputdir, file)
+                filepath = os.path.join(outputdir, file_name)
                 fileout = codecs.open(filepath, 'w', config.charset)
                 fileout.write(page_template % {
                     'charset': config.charset,
@@ -230,5 +230,5 @@ General syntax: moin [options] export dump [dump-options]
 
         errlog.close()
         if errcnt:
-            print >> sys.stderr, "*** %d error(s) occurred, see '%s'!" % (errcnt, errfile)
+            print("*** %d error(s) occurred, see '%s'!" % (errcnt, errfile), file=sys.stderr)
 

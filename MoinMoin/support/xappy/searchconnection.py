@@ -855,7 +855,7 @@ class SearchConnection(object):
                 handler(indexpath, userdata)
             except Exception as e:
                 import sys, traceback
-                print >>sys.stderr, "WARNING: unhandled exception in handler called by SearchConnection.close(): %s" % traceback.format_exception_only(type(e), e)
+                print("WARNING: unhandled exception in handler called by SearchConnection.close(): %s" % traceback.format_exception_only(type(e), e), file=sys.stderr)
 
     def get_doccount(self):
         """Count the number of documents in the database.
