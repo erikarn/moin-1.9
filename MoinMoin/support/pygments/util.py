@@ -355,7 +355,7 @@ if sys.version_info < (3, 0):
     u_prefix = 'u'
     iteritems = dict.iteritems
     itervalues = dict.itervalues
-    import StringIO
+    from io import StringIO
     import cStringIO
     # unfortunately, io.StringIO in Python 2 doesn't accept str at all
     StringIO = StringIO.StringIO

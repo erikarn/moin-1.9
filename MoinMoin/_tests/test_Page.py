@@ -54,7 +54,7 @@ class TestPage:
 
     def testSendPage(self):
         page = Page(self.request, u"FrontPage")
-        import StringIO
+        from io import StringIO
         out = StringIO.StringIO()
         self.request.redirect(out)
         page.send_page(msg=u'Done', emit_headers=False)

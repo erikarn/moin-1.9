@@ -11,7 +11,7 @@
 
 import re
 import new
-import StringIO
+from io import StringIO
 import __builtin__
 import sys
 

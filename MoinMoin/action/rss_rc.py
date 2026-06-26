@@ -8,7 +8,8 @@
     @copyright: 2006-2007 MoinMoin:ThomasWaldmann
     @license: GNU GPL, see COPYING for details.
 """
-import StringIO, re, time
+import re, time
+from io import StringIO
 from MoinMoin import wikixml, config, wikiutil
 from MoinMoin.logfile import editlog
 from MoinMoin.util import timefuncs

@@ -16,7 +16,7 @@
 """
 
 # cStringIO cannot be used because it doesn't handle Unicode.
-import StringIO
+from io import StringIO
 
 from MoinMoin import caching, config, wikiutil, Page
 

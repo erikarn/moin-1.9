@@ -10,7 +10,8 @@
     @license: GNU GPL, see COPYING for details
 """
 
-import StringIO, time
+import time
+from io import StringIO
 
 from MoinMoin import wikiutil
 from MoinMoin.Page import Page

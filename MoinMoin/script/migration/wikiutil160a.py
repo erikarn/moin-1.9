@@ -1612,7 +1612,7 @@ def checkTicket(request, ticket):
 
 def renderText(request, Parser, text, line_anchors=False):
     """executes raw wiki markup with all page elements"""
-    import StringIO
+    from io import StringIO
     out = StringIO.StringIO()
     request.redirect(out)
     wikiizer = Parser(text, request)

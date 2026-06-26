@@ -22,7 +22,7 @@
 """
 
 import re
-import StringIO
+from io import StringIO
 from MoinMoin import config, wikiutil
 from MoinMoin.macro import Macro
 from MoinMoin import config

@@ -10,7 +10,7 @@
 
 import re
 import traceback
-import StringIO # not relevant for speed, so we do not need cStringIO
+from io import StringIO # not relevant for speed, so we do not need cStringIO
 
 
 from MoinMoin import wikiutil
