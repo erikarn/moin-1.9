@@ -6,7 +6,7 @@
     @license: GNU GPL, see COPYING for details.
 """
 
-import StringIO
+from io import StringIO
 
 from MoinMoin import log
 logging = log.getLogger(__name__)
