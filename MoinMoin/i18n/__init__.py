@@ -173,7 +173,7 @@ class Translation(object):
             self.ename = info['x-language-in-english']
             self.direction = info['x-direction']
             self.maintainer = info['last-translator']
-        except KeyError, err:
+        except KeyError as err:
             logging.warning("metadata problem in %r: %s" % (self.language, str(err)))
         try:
             assert self.direction in ('ltr', 'rtl', )

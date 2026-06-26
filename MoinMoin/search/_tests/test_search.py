@@ -459,7 +459,7 @@ class TestXapianSearch(BaseSearchTest):
             from MoinMoin.search.Xapian.search import XapianSearch
             self.searcher_class = XapianSearch
 
-        except ImportError, error:
+        except ImportError as error:
             if not str(error).startswith('Xapian '):
                 raise
             py.test.skip('xapian is not installed')

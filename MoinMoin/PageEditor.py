@@ -188,7 +188,7 @@ class PageEditor(Page):
                             ) + "<br>" + edit_lock_message
                     else:
                         msg = edit_lock_message
-            except OSError, err:
+            except OSError as err:
                 if err.errno == errno.ENAMETOOLONG:
                     msg = _("Page name is too long, try shorter name.")
                 else:
@@ -585,7 +585,7 @@ Try a different name.""", wiki=True) % (wikiutil.escape(newpagename), )
             send_event(event)
 
             return True, None
-        except OSError, err:
+        except OSError as err:
             # Try to understand what happened. Maybe its better to check
             # the error code, but I just reused the available code above...
             if newpage.exists(includeDeleted=1):
@@ -659,7 +659,7 @@ Try a different name.""", wiki=True) % (wikiutil.escape(newpagename), )
             send_event(event)
 
             return True, None
-        except OSError, err:
+        except OSError as err:
             # Try to understand what happened. Maybe its better to check
             # the error code, but I just reused the available code above...
             if newpage.exists(includeDeleted=1):
@@ -967,7 +967,7 @@ Try a different name.""", wiki=True) % (wikiutil.escape(newpagename), )
                 try:
                     filesys.rename(cfn, clfn)
                     got_lock = True
-                except OSError, err:
+                except OSError as err:
                     got_lock = False
                     if err.errno == 2: # there was no 'current' file
                         time.sleep(0.1)
@@ -983,7 +983,7 @@ Try a different name.""", wiki=True) % (wikiutil.escape(newpagename), )
             f.close()
             try:
                 rev = int(revstr)
-            except ValueError, err:
+            except ValueError as err:
                 raise self.SaveError(_("Unable to determine current page revision from the 'current' file. The page %s is damaged and cannot be edited right now.") % self.page_name)
 
             if not was_deprecated:
@@ -995,7 +995,7 @@ Try a different name.""", wiki=True) % (wikiutil.escape(newpagename), )
                 f = file(cltfn, 'w')
                 f.write(revstr+'\n')
                 f.close()
-            except IOError, err:
+            except IOError as err:
                 try:
                     os.remove(cltfn)
                 except:

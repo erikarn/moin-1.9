@@ -446,11 +446,11 @@ class ScriptEngine:
                 fn(*elements[1:])
             except ScriptExit:
                 break
-            except TypeError, e:
+            except TypeError as e:
                 self.msg += u"Exception %s (line %i): %s\n" % (e.__class__.__name__, lineno, unicode(e))
                 success = False
                 break
-            except RuntimeScriptException, e:
+            except RuntimeScriptException as e:
                 if not self.ignoreExceptions:
                     self.msg += u"Exception %s (line %i): %s\n" % (e.__class__.__name__, lineno, unicode(e))
                     success = False

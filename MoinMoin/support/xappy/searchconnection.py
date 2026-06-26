@@ -853,7 +853,7 @@ class SearchConnection(object):
         for handler, userdata in self._close_handlers:
             try:
                 handler(indexpath, userdata)
-            except Exception, e:
+            except Exception as e:
                 import sys, traceback
                 print >>sys.stderr, "WARNING: unhandled exception in handler called by SearchConnection.close(): %s" % traceback.format_exception_only(type(e), e)
 

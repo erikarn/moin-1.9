@@ -151,18 +151,18 @@ def make(filename, outfile):
     infile, outfile = mf.make_filenames(filename, outfile)
     try:
         lines = file(infile).readlines()
-    except IOError, msg:
+    except IOError as msg:
         print >> sys.stderr, msg
         sys.exit(1)
     try:
         mf.read_po(lines)
         output = mf.generate_mo()
-    except SyntaxErrorException, msg:
+    except SyntaxErrorException as msg:
         print >> sys.stderr, msg
 
     try:
         open(outfile, "wb").write(output)
-    except IOError, msg:
+    except IOError as msg:
         print >> sys.stderr, msg
 
 

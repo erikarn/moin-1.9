@@ -153,7 +153,7 @@ class SortableMarshaller(object):
         """
         try:
             value = parsedate.date_from_string(value)
-        except ValueError, e:
+        except ValueError as e:
             raise self._err("Value supplied to field %r must be a "
                             "valid date: was %r: error is '%s'" %
                             (fieldname, value, str(e)))

@@ -136,7 +136,7 @@ General syntax: moin [options] export dump [dump-options]
         try:
             os.mkdir(outputdir)
             script.log("Created output directory '%s'!" % outputdir)
-        except OSError, err:
+        except OSError as err:
             if err.errno != errno.EEXIST:
                 script.fatal("Cannot create output directory '%s'!" % outputdir)
 
