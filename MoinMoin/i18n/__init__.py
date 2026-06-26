@@ -26,7 +26,7 @@
 """
 
 import os, gettext, glob
-from StringIO import StringIO
+from io import StringIO
 
 from MoinMoin import log
 logging = log.getLogger(__name__)

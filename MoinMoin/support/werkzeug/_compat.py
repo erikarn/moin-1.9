@@ -74,7 +74,7 @@ if PY2:
 
     range_type = xrange
 
-    from StringIO import StringIO
+    from io import StringIO
     from cStringIO import StringIO as BytesIO
 
     NativeStringIO = BytesIO

@@ -8,7 +8,7 @@
 import os
 import tempfile
 import shutil
-from StringIO import StringIO
+from io import StringIO
 
 from MoinMoin.logfile import LogFile
 

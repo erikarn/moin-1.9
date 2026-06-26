@@ -28,7 +28,7 @@
 """
 
 import os, time, zipfile, errno, datetime
-from StringIO import StringIO
+from io import StringIO
 import tarfile
 
 from werkzeug.http import http_date

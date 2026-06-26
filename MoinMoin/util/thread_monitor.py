@@ -21,7 +21,7 @@ import sys
 import threading
 import traceback
 from time import sleep
-from StringIO import StringIO
+from io import StringIO
 
 
 class AbstractMonitor(object):

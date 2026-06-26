@@ -40,7 +40,7 @@ SLAPD_EXECUTABLE = 'slapd'  # filename of LDAP server executable - if it is not
                             # in your PATH, you have to give full path/filename.
 
 import os, shutil, tempfile, time, base64, md5
-from StringIO import StringIO
+from io import StringIO
 import signal
 import subprocess
 

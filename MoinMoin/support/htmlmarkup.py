@@ -20,7 +20,7 @@ try:
     frozenset
 except NameError:
     from sets import ImmutableSet as frozenset
-from StringIO import StringIO
+from io import StringIO
 
 __all__ = ['escape', 'unescape', 'html']
 

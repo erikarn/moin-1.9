@@ -5,7 +5,7 @@
     @copyright: 2008 MoinMoin:FlorianKrupicka
     @license: GNU GPL, see COPYING for details.
 """
-from StringIO import StringIO
+from io import StringIO
 
 from MoinMoin import wsgiapp
 
