@@ -86,12 +86,12 @@ General syntax: moin [options] server standalone [standalone-options]
             try:
                 pids = open(pidfile, "r").read()
             except IOError:
-                print "pid file not found (server not running?)"
+                print("pid file not found (server not running?)")
             else:
                 try:
                     os.kill(int(pids), signal.SIGTERM)
                 except OSError:
-                    print "kill failed (server not running?)"
+                    print("kill failed (server not running?)")
             os.remove(pidfile)
         else:
             try:
