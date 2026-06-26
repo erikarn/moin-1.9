@@ -8,7 +8,7 @@
 
 import os
 import socket
-import xmlrpclib
+import xmlrpc.client as xmlrpclib
 
 from MoinMoin import wikiutil
 from MoinMoin.util import lock, pickle

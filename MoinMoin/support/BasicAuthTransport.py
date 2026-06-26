@@ -1,6 +1,6 @@
 # taken from Amos' XML-RPC HowTo:
 
-import xmlrpclib, httplib
+import xmlrpc.client as xmlrpclib, httplib
 from base64 import encodestring
 
 class BasicAuthTransport(xmlrpclib.Transport):

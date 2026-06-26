@@ -8,7 +8,7 @@
     @license: GNU GPL, see COPYING for details.
 """
 
-import xmlrpclib
+import xmlrpc.client as xmlrpclib
 
 from MoinMoin import log
 logging = log.getLogger(__name__)

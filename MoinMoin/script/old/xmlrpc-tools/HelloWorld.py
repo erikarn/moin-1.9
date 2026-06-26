@@ -8,7 +8,7 @@ GPL software, 2003-08-10 Thomas Waldmann
 """
 
 def run():
-    import xmlrpclib
+    import xmlrpc.client as xmlrpclib
     srcwiki = xmlrpclib.ServerProxy("http://master.moinmo.in/?action=xmlrpc2")
     print srcwiki.HelloWorld("Hello Wiki User!\n")
 

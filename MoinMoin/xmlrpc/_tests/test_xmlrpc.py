@@ -6,7 +6,7 @@
     @license: GNU GPL, see COPYING for details.
 """
 
-from xmlrpclib import Fault
+from xmlrpc.client import Fault
 
 from MoinMoin.user import User
 from MoinMoin.xmlrpc import XmlRpcBase

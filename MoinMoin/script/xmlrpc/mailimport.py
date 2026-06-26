@@ -7,7 +7,7 @@ MoinMoin - MailImport script
 """
 
 import sys
-import xmlrpclib
+import xmlrpc.client as xmlrpclib
 
 from MoinMoin.script import MoinScript, fatal
 

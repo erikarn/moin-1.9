@@ -6,7 +6,7 @@ MoinMoin - page contents retriever
 @license: GNU GPL, see COPYING for details.
 """
 
-import xmlrpclib
+import xmlrpc.client as xmlrpclib
 
 from MoinMoin.script import MoinScript
 

@@ -9,7 +9,7 @@ master_url = "https://master19.moinmo.in/?action=xmlrpc2"
 user = "ThomasWaldmann" # must be a known Wiki account
 
 import sys, os
-import xmlrpclib
+import xmlrpc.client as xmlrpclib
 
 password = os.environ.get("PASS", "")
 sys.path.insert(0, '../..')

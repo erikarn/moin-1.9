@@ -66,7 +66,7 @@ def getblacklist(request, pagename, do_update):
         fail_time = failure.mtime() # only update if no failure in last hour
         if (mymtime < tooold) and (fail_time < tooold):
             logging.info("%d *BadContent too old, have to check for an update..." % tooold)
-            import xmlrpclib
+            import xmlrpc.client as xmlrpclib
             import socket
 
             timeout = 15 # time out for reaching the master server via xmlrpc

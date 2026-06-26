@@ -14,7 +14,7 @@
 import sys
 sys.path.insert(0, '../../../..')
 
-import xmlrpclib
+import xmlrpc.client as xmlrpclib
 
 
 def updateGroup(server_url, username, password, groupname, groupdesc, groupmembers, acl=''):

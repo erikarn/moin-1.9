@@ -9,7 +9,7 @@
     @license: GNU GPL, see COPYING for details.
 """
 
-import xmlrpclib
+import xmlrpc.client as xmlrpclib
 INVALID = object()
 
 class RPCYielder(object):

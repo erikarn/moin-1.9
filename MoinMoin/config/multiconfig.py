@@ -383,8 +383,8 @@ class ConfigFunctionality(object):
 
         # if we are to use the jabber bot, instantiate a server object for future use
         if self.jabber_enabled:
-            from xmlrpclib import Server
-            self.notification_server = Server(self.notification_bot_uri, )
+            from xmlrpc.client import ServerProxy
+            self.notification_server = ServerProxy(self.notification_bot_uri, )
 
         # Cache variables for the properties below
         self._iwid = self._iwid_full = self._meta_dict = None
