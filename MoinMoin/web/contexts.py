@@ -8,13 +8,15 @@
     @license: GNU GPL, see COPYING for details.
 """
 
-import time, inspect, StringIO, sys, warnings
+import time, inspect, sys, warnings
 
 from werkzeug.datastructures import Headers
 from werkzeug.http import http_date
 from werkzeug.test import create_environ
 from werkzeug.utils import redirect
 from werkzeug.exceptions import abort, Unauthorized, NotFound
+
+from io import StringIO
 
 from MoinMoin import i18n, error, user, config, wikiutil
 from MoinMoin.config import multiconfig
