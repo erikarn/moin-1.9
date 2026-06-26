@@ -460,7 +460,7 @@ class ConfigFunctionality(object):
         secret = ''
         for varname in varnames:
             var = getattr(self, varname, None)
-            if isinstance(var, (str, unicode)):
+            if isinstance(var, str):
                 secret += repr(var)
         return secret
 
@@ -506,7 +506,7 @@ class ConfigFunctionality(object):
         try:
             iwid = self.meta_dict['IWID']
         except KeyError:
-            iwid = util.random_string(16).encode("hex") + "-" + str(int(time.time()))
+            iwid = util.random_string(16).hex() + "-" + str(int(time.time()))
             self.meta_dict['IWID'] = iwid
             self.meta_dict.sync()
 
@@ -538,58 +538,10 @@ configuration for typos before requesting support or reporting a bug.
 """ % ', '.join(unknown)
             raise error.ConfigurationError(msg)
 
+    # Note: in python 3 everything is unicode, so we don't need
+    # to try and figure out what is or isn't unicode here.
     def _decode(self):
-        """ Try to decode certain names, ignore unicode values
-
-        Try to decode str using utf-8. If the decode fail, raise FatalError.
-
-        Certain config variables should contain unicode values, and
-        should be defined with u'text' syntax. Python decode these if
-        the file have a 'coding' line.
-
-        This will allow utf-8 users to use simple strings using, without
-        using u'string'. Other users will have to use u'string' for
-        these names, because we don't know what is the charset of the
-        config files.
-        """
-        charset = 'utf-8'
-        message = u"""
-"%(name)s" configuration variable is a string, but should be
-unicode. Use %(name)s = u"value" syntax for unicode variables.
-
-Also check your "-*- coding -*-" line at the top of your configuration
-file. It should match the actual charset of the configuration file.
-"""
-
-        decode_names = (
-            'sitename', 'interwikiname', 'user_homewiki', 'logo_string', 'navi_bar',
-            'page_front_page', 'page_category_regex', 'page_dict_regex',
-            'page_group_regex', 'page_template_regex', 'page_license_page',
-            'page_local_spelling_words', 'acl_rights_default',
-            'acl_rights_before', 'acl_rights_after', 'mail_from',
-            'quicklinks_default', 'subscribed_pages_default',
-            )
-
-        for name in decode_names:
-            attr = getattr(self, name, None)
-            if attr:
-                # Try to decode strings
-                if isinstance(attr, str):
-                    try:
-                        setattr(self, name, unicode(attr, charset))
-                    except UnicodeError:
-                        raise error.ConfigurationError(message %
-                                                       {'name': name})
-                # Look into lists and try to decode strings inside them
-                elif isinstance(attr, list):
-                    for i in xrange(len(attr)):
-                        item = attr[i]
-                        if isinstance(item, str):
-                            try:
-                                attr[i] = unicode(item, charset)
-                            except UnicodeError:
-                                raise error.ConfigurationError(message %
-                                                               {'name': name})
+        pass
 
     def _check_directories(self):
         """ Make sure directories are accessible
