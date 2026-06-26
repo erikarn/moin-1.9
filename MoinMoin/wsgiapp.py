@@ -22,7 +22,7 @@ from MoinMoin.action import get_names, get_available_actions
 from MoinMoin.util.abuse import log_attempt
 
 
-def set_umask(new_mask=0777^config.umask):
+def set_umask(new_mask=0o777^config.umask):
     """ Set the OS umask value (and ignore potential failures on OSes where
         this is not supported).
         Default: the bitwise inverted value of config.umask
@@ -271,7 +271,7 @@ class Application(object):
                         dt, "!" * int(dt) or "."))
         except HTTPException as e:
             response = e
-        except error.ConfigurationError, e:
+        except error.ConfigurationError as e:
             # this is stuff the user should see on the web interface:
             response = fatal_response(e)
         except Exception as e:
