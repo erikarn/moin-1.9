@@ -165,7 +165,7 @@ class SequenceMixin(object):
         return not self.__eq__(other)
 
 if PY3:
-    # getargspec() is deprecated, use this under py3.
+    # getfullargspec() is deprecated, use this under py3.
     # even though it's a lot more awkward to get basic info :|
 
     _VAR_KEYWORD = inspect.Parameter.VAR_KEYWORD
@@ -186,7 +186,7 @@ else:
 
     def accepts_keyword(func, key):
         """test if function accepts specified keyword"""
-        spec = inspect.getargspec(get_method_function(func))
+        spec = inspect.getfullargspec(get_method_function(func))
         return key in spec.args or spec.keywords is not None
 
 def update_mixin_classes(target, add=None, remove=None, append=False,
