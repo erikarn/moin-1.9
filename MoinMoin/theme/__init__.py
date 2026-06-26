@@ -1194,8 +1194,8 @@ actionsMenuInit('%(label)s');
             action = self.request.action
             # Do not show editbar on edit but on save/cancel
             return not (action == 'edit' and
-                        not form.has_key('button_save') and
-                        not form.has_key('button_cancel'))
+                        'button_save' not in form and
+                        'button_cancel' not in form)
         return False
 
     def editbarItems(self, page):
@@ -1621,7 +1621,7 @@ var gui_editor_link_text = "%(text)s";
         _ = request.getText
         rev = request.rev
 
-        if keywords.has_key('page'):
+        if 'page' in keywords:
             page = keywords['page']
             pagename = page.page_name
         else:
@@ -1767,7 +1767,7 @@ var gui_editor_link_text = "%(text)s";
 
         # start the <body>
         bodyattr = []
-        if keywords.has_key('body_attr'):
+        if 'body_attr' in keywords:
             bodyattr.append(' ')
             bodyattr.append(keywords['body_attr'])
 
