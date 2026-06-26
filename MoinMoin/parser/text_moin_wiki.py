@@ -216,7 +216,7 @@ class Parser:
     transclude_desc_re = re.compile(transclude_desc_rules, re.VERBOSE|re.UNICODE)
 
     # lists:
-    ol_rule = ur"""
+    ol_rule = r"""
         ^\s+  # indentation
         (?:[0-9]+|[aAiI])\. # arabic, alpha, roman counting
         (?:\#\d+)?  # optional start number
@@ -224,7 +224,7 @@ class Parser:
     """
     ol_re = re.compile(ol_rule, re.VERBOSE|re.UNICODE)
 
-    dl_rule = ur"""
+    dl_rule = r"""
         ^\s+  # indentation
         .*?::  # definition term::
         \s  # require on blank afterwards
@@ -232,12 +232,12 @@ class Parser:
     dl_re = re.compile(dl_rule, re.VERBOSE|re.UNICODE)
 
     # others
-    indent_re = re.compile(ur"^\s*", re.UNICODE)
+    indent_re = re.compile(r"^\s*", re.UNICODE)
     eol_re = re.compile(r'\r?\n', re.UNICODE)
 
     # this is used inside parser/pre sections (we just want to know when it's over):
     parser_unique = u''
-    parser_scan_rule = ur"""
+    parser_scan_rule = r"""
 (?P<parser_end>
     %s\}\}\}  # in parser/pre, we only look for the end of the parser/pre
 )
@@ -246,7 +246,7 @@ class Parser:
 
     # the big, fat, less ugly one ;)
     # please be very careful: blanks and # must be escaped with \ !
-    scan_rules = ur"""
+    scan_rules = r"""
 (?P<emph_ibb>
     '''''(?=[^']+''')  # italic on, bold on, ..., bold off
 )|(?P<emph_ibi>

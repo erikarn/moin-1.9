@@ -34,9 +34,9 @@ class Parser:
     # quoted strings (we require that there is at least one char (that is not the quoting char)
     # inside to not confuse stuff like '''Contact:''' (just a bold Contact:) with interwiki markup
     # OtherWiki:'Page with blanks'
-    sq_string = ur"('[^']+?')" # single quoted string
-    dq_string = ur"(\"[^\"]+?\")" # double quoted string
-    q_string = ur"(%s|%s)" % (sq_string, dq_string) # quoted string
+    sq_string = r"('[^']+?')" # single quoted string
+    dq_string = r"(\"[^\"]+?\")" # double quoted string
+    q_string = r"(%s|%s)" % (sq_string, dq_string) # quoted string
     attachment_schemas = ["attachment", "inline", "drawing"]
     punct_pattern = re.escape(u'''"\'}]|:,.)?!''')
     punct_no_quote_pattern = re.escape(u'''}]|:,.)?!''')
@@ -59,14 +59,14 @@ class Parser:
         'q_string': q_string,
     }
 
-    ol_rule = ur"^\s+(?:[0-9]+|[aAiI])\.(?:#\d+)?\s"
-    dl_rule = ur"^\s+.*?::\s"
+    ol_rule = r"^\s+(?:[0-9]+|[aAiI])\.(?:#\d+)?\s"
+    dl_rule = r"^\s+.*?::\s"
 
     # this is used inside <pre> / parser sections (we just want to know when it's over):
-    pre_formatting_rules = ur"""(?P<pre>(\}\}\}))"""
+    pre_formatting_rules = r"""(?P<pre>(\}\}\}))"""
 
     # the big, fat, ugly one ;)
-    formatting_rules = ur"""(?P<ent_numeric>&#(\d{1,5}|x[0-9a-fA-F]+);)
+    formatting_rules = r"""(?P<ent_numeric>&#(\d{1,5}|x[0-9a-fA-F]+);)
 (?:(?P<emph_ibb>'''''(?=[^']+'''))
 (?P<emph_ibi>'''''(?=[^']+''))
 (?P<emph_ib_or_bi>'{5}(?=[^']))
@@ -957,7 +957,7 @@ class Parser:
         pre_scan_re = re.compile(pre_rules, re.UNICODE)
         number_re = re.compile(self.ol_rule, re.UNICODE)
         term_re = re.compile(self.dl_rule, re.UNICODE)
-        indent_re = re.compile(ur"^\s*", re.UNICODE)
+        indent_re = re.compile(r"^\s*", re.UNICODE)
         eol_re = re.compile(r'\r?\n', re.UNICODE)
         self.request.clock.stop('compile_huge_and_ugly')
 
