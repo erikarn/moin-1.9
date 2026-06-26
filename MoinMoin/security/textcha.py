@@ -102,7 +102,7 @@ class TextCha(object):
                 self.answer_re = re.compile(self.answer_regex, re.U|re.I)
             except KeyError:
                 # this question does not exist, thus there is no answer
-                self.answer_regex = ur"[Never match for cheaters]"
+                self.answer_regex = r"[Never match for cheaters]"
                 self.answer_re = None
                 logging.warning(u"TextCha: Non-existing question '%s'. User '%s' trying to cheat?" % (
                                 self.question, self.user_info))

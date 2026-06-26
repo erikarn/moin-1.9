@@ -189,7 +189,7 @@ class Converter(Parser):
 
     def _macro_repl(self, word):
         # we use [[...]] for links now, macros will be <<...>>
-        macro_rule = ur"""
+        macro_rule = r"""
             \[\[
             (?P<macro_name>\w+)
             (\((?P<macro_args>.*?)\))?
