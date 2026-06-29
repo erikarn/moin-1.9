@@ -593,6 +593,10 @@ also the spelling of the directory name.
             # Lock other threads while we check and import
             lock = threading.Lock()
             with lock:
+                # Ensure the siteid module exists in sys.modules
+                if self.siteid not in sys.modules:
+                    import types
+                    sys.modules[self.siteid] = types.ModuleType(self.siteid)
                 for pdir in plugin_dirs:
                     csum = 'p_%s' % hashlib.new('sha1', pdir.encode()).hexdigest()
                     modname = '%s.%s' % (self.siteid, csum)
