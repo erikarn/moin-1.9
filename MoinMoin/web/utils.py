@@ -240,8 +240,10 @@ class UniqueIDGenerator(object):
         @returns: a unique (relatively to the namespace) ID
         @rtype: unicode
         """
-        if not isinstance(base, unicode):
-            base = unicode(str(base), 'ascii', 'ignore')
+        if isinstance(base, bytes):
+            base = base.decode('ascii', 'ignore')
+        else:
+            base = str(base)
         if not namespace in self.page_ids:
             self.page_ids[namespace] = {}
         count = self.page_ids[namespace].get(base, -1) + 1
