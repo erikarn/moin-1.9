@@ -55,7 +55,7 @@ class Parser:
     url_scheme = u'|'.join(config.url_schemas)
 
     # some common rules
-    url_rule = ur'''
+    url_rule = r'''
         (?:^|(?<=\W))  # require either beginning of line or some non-alphanum char (whitespace, punctuation) to the left
         (?P<url_target>  # capture whole url there
          (?P<url_scheme>%(url_scheme)s)  # some scheme
@@ -73,7 +73,7 @@ class Parser:
     # interwiki_wiki name starts with an uppercase letter A-Z. Later, the code
     # also checks whether the wiki name is in the interwiki map (if not, it renders
     # normal text, no link):
-    interwiki_rule = ur'''
+    interwiki_rule = r'''
         (?:^|(?<=\W))  # require either beginning of line or some non-alphanum char (whitespace, punctuation) to the left
         (?P<interwiki_wiki>[A-Z][a-zA-Z]+)  # interwiki wiki name
         \:
@@ -88,7 +88,7 @@ class Parser:
     }
 
     # BE CAREFUL: if you do changes to word_rule, consider doing them also to word_rule_js (see below)
-    word_rule = ur'''
+    word_rule = r'''
         (?:
          (?<![%(u)s%(l)s/])  # require anything not upper/lower/slash before
          |
@@ -124,13 +124,13 @@ class Parser:
     # simplified word_rule for FCKeditor's "unlink" plugin (puts a ! in front of a WikiName if WikiName matches word_rule_js),
     # because JavaScript can not use group names and verbose regular expressions!
     word_rule_js = (
-        ur'''(?:(?<![%(u)s%(l)s/])|^)'''
-        ur'''(?:'''
-         ur'''(?:(%(parent)s)*|((?<!%(child)s)%(child)s)?)'''
-         ur'''(((?<!%(child)s)%(child)s)?(?:[%(u)s][%(l)s]+){2,})+'''
-         ur'''(?:\#(?:\S+))?'''
-        ur''')'''
-        ur'''(?:(?![%(u)s%(l)s/])|$)'''
+        r'''(?:(?<![%(u)s%(l)s/])|^)'''
+        r'''(?:'''
+         r'''(?:(%(parent)s)*|((?<!%(child)s)%(child)s)?)'''
+         r'''(((?<!%(child)s)%(child)s)?(?:[%(u)s][%(l)s]+){2,})+'''
+         r'''(?:\#(?:\S+))?'''
+        r''')'''
+        r'''(?:(?![%(u)s%(l)s/])|$)'''
     ) % {
         'u': config.chars_upper,
         'l': config.chars_lower,
