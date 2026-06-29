@@ -295,7 +295,7 @@ class HTTPContext(BaseContext):
 
     def redirectedOutput(self, function, *args, **kw):
         """ Redirect output during function, return redirected output """
-        buf = StringIO.StringIO()
+        buf = StringIO()
         self.redirect(buf)
         try:
             function(*args, **kw)

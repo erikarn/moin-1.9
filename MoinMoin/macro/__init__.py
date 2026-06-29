@@ -178,7 +178,7 @@ class Macro:
         _ = self._
         try:
             needle_re = re.compile(needle, re.IGNORECASE)
-        except re.error, err:
+        except re.error as err:
             raise ValueError("Error in regex %r: %s" % (needle, err))
 
         # Get page list readable by current user, filtered by needle
@@ -363,7 +363,7 @@ class Macro:
         anchor = wikiutil.get_unicode(self.request, anchor, 'anchor', u'anchor')
         return self.formatter.anchordef(anchor)
 
-    def macro_MailTo(self, email=unicode, text=u''):
+    def macro_MailTo(self, email=str, text=u''):
         if not email:
             raise ValueError("You need to give an (obfuscated) email address")
 
