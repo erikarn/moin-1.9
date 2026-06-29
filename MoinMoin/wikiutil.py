@@ -1568,7 +1568,7 @@ def get_int(request, arg, name=None, default=None):
     @returns: the integer value of the string (or default value)
     """
     _ = request.getText
-    assert default is None or isinstance(default, (int, long))
+    assert default is None or isinstance(default, int)
     if arg is None:
         return default
     elif not isinstance(arg, str):
@@ -1599,7 +1599,7 @@ def get_float(request, arg, name=None, default=None):
     @returns: the float value of the string (or default value)
     """
     _ = request.getText
-    assert default is None or isinstance(default, (int, long, float))
+    assert default is None or isinstance(default, (int, float))
     if arg is None:
         return default
     elif not isinstance(arg, str):
@@ -1630,7 +1630,7 @@ def get_complex(request, arg, name=None, default=None):
     @returns: the complex value of the string (or default value)
     """
     _ = request.getText
-    assert default is None or isinstance(default, (int, long, float, complex))
+    assert default is None or isinstance(default, (int, float, complex))
     if arg is None:
         return default
     elif not isinstance(arg, str):
@@ -1829,7 +1829,7 @@ def invoke_extension_function(request, function, args, fixed_args=[]):
         # if extending this, extend required_arg as well!
         if isinstance(default, bool):
             return get_bool(request, value, name, default)
-        elif isinstance(default, (int, long)):
+        elif isinstance(default, int):
             return get_int(request, value, name, default)
         elif isinstance(default, float):
             return get_float(request, value, name, default)
@@ -1841,7 +1841,7 @@ def invoke_extension_function(request, function, args, fixed_args=[]):
             return get_choice(request, value, name, default)
         elif default is bool:
             return get_bool(request, value, name)
-        elif default is int or default is long:
+        elif default is int:
             return get_int(request, value, name)
         elif default is float:
             return get_float(request, value, name)
@@ -1887,10 +1887,9 @@ def invoke_extension_function(request, function, args, fixed_args=[]):
         positional = []
 
     if isfunction(function) or ismethod(function):
-        argnames, varargs, varkw, defaultlist = getfullargspec(function)
+        argnames, varargs, varkw, defaultlist, _, _, _ = getfullargspec(function)
     elif isclass(function):
-        (argnames, varargs,
-         varkw, defaultlist) = getfullargspec(function.__init__.im_func)
+        argnames, varargs, varkw, defaultlist, _, _, _ = getfullargspec(function.__init__)
     else:
         raise TypeError('function must be a function, method or class')
 
@@ -1944,7 +1943,7 @@ def invoke_extension_function(request, function, args, fixed_args=[]):
 
     # type-convert all keyword arguments to the type
     # that the default value indicates
-    for argname in kwargs.keys()[:]:
+    for argname in list(kwargs.keys()):
         if argname in defaults:
             # the value of 'argname' from kwargs will be put into the
             # macro's 'argname' argument, so convert that giving the

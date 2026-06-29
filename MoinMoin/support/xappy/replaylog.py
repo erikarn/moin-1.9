@@ -210,14 +210,11 @@ class ReplayLog(object):
                 arg = arg.encode('utf-8')
             return 'str(%d,%s)' % (len(arg), arg)
 
-        if isinstance(arg, long):
+        if isinstance(arg, int):
             try:
                 arg = int(arg)
             except OverFlowError:
                 pass
-
-        if isinstance(arg, long):
-            return 'long(%d)' % arg
 
         if isinstance(arg, int):
             return 'int(%d)' % arg
