@@ -67,7 +67,7 @@ def unquoteFilename12(filename, encoding):
     @rtype: string
     @return: decoded, original filename
     """
-    str = urllib.unquote(filename.replace('_', '%'))
+    str = urllib.parse.unquote(filename.replace('_', '%'))
     try:
         newstr = str.decode(encoding)
     except UnicodeDecodeError: # try again with iso

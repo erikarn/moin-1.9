@@ -53,7 +53,7 @@ class PHPSessionAuth(BaseAuth):
         cookie = kw.get('cookie')
         if not cookie is None:
             for cookiename in cookie:
-                cookievalue = urllib.unquote(cookie[cookiename].value).decode('iso-8859-1')
+                cookievalue = urllib.parse.unquote(cookie[cookiename].value).decode('iso-8859-1')
                 session = _PHPsessionParser.loadSession(cookievalue, path=self.s_path, prefix=self.s_prefix)
                 if session:
                     if "egw" in self.apps and session.get('egw_session', None):

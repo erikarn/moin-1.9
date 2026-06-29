@@ -70,12 +70,12 @@ def convert_eventlog(fname_from, fname_to, enc_from, enc_to):
         kvlist = []
         for kvpair in kvpairs:
             key, val = kvpair.split('=')
-            key = urllib.unquote(key)
-            val = urllib.unquote(val)
+            key = urllib.parse.unquote(key)
+            val = urllib.parse.unquote(val)
             key = convert_string(key, enc_from, enc_to)
             val = convert_string(val, enc_from, enc_to)
-            key = urllib.quote(key)
-            val = urllib.quote(val)
+            key = urllib.parse.quote(key)
+            val = urllib.parse.quote(val)
             kvlist.append("%s=%s" % (key, val))
         fields[2] = '&'.join(kvlist)
         line = '\t'.join(fields) + '\n'

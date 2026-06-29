@@ -1547,7 +1547,7 @@ class TOTP(object):
             #       to include both.
             label = "%s:%s" % (quote(issuer, '@'), label)
             params.append(("issuer", issuer))
-        # NOTE: not using urllib.urlencode() because it encodes ' ' as '+';
+        # NOTE: not using urllib.parse.urlencode() because it encodes ' ' as '+';
         #       but spec says to use '%20', and not sure how fragile
         #       the various totp clients' parsers are.
         param_str = u("&").join(u("%s=%s") % (key, quote(value, '')) for key, value in params)

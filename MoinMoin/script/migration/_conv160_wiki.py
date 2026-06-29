@@ -17,7 +17,7 @@
 
     attachment:with%20blank.txt -> [[attachment:with blank.txt]]
     attachment:some_page/with%20blank.txt -> [[attachment:some page/with blank.txt]]
-    The attachment processing should also urllib.unquote the filename (or at
+    The attachment processing should also urllib.parse.unquote the filename (or at
     least replace %20 by space) and put it into "quotes" if it contains spaces.
 
     @copyright: 2007 MoinMoin:JohannesBerg,

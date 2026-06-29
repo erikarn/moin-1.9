@@ -85,7 +85,7 @@ def decodeUserInput(s, charsets=[config.charset]):
 # with py == 2.4.2, it crashes with unicode, if it contains non-ASCII chars
 def url_quote(s, safe='/', want_unicode=False):
     """
-    Wrapper around urllib.quote doing the encoding/decoding as usually wanted:
+    Wrapper around urllib.parse.quote doing the encoding/decoding as usually wanted:
 
     @param s: the string to quote (can be str or unicode, if it is unicode,
               config.charset is used to encode it before calling urllib)
@@ -98,14 +98,14 @@ def url_quote(s, safe='/', want_unicode=False):
         s = s.encode(config.charset)
     elif not isinstance(s, str):
         s = str(s)
-    s = urllib.quote(s, safe)
+    s = urllib.parse.quote(s, safe)
     if want_unicode:
         s = s.decode(config.charset) # ascii would also work
     return s
 
 def url_quote_plus(s, safe='/', want_unicode=False):
     """
-    Wrapper around urllib.quote_plus doing the encoding/decoding as usually wanted:
+    Wrapper around urllib.parse.quote_plus doing the encoding/decoding as usually wanted:
 
     @param s: the string to quote (can be str or unicode, if it is unicode,
               config.charset is used to encode it before calling urllib)
@@ -118,14 +118,14 @@ def url_quote_plus(s, safe='/', want_unicode=False):
         s = s.encode(config.charset)
     elif not isinstance(s, str):
         s = str(s)
-    s = urllib.quote_plus(s, safe)
+    s = urllib.parse.quote_plus(s, safe)
     if want_unicode:
         s = s.decode(config.charset) # ascii would also work
     return s
 
 def url_unquote(s, want_unicode=True):
     """
-    Wrapper around urllib.unquote doing the encoding/decoding as usually wanted:
+    Wrapper around urllib.parse.unquote doing the encoding/decoding as usually wanted:
 
     @param s: the string to unquote (can be str or unicode, if it is unicode,
               config.charset is used to encode it before calling urllib)
@@ -135,7 +135,7 @@ def url_unquote(s, want_unicode=True):
     """
     if isinstance(s, unicode):
         s = s.encode(config.charset) # ascii would also work
-    s = urllib.unquote(s)
+    s = urllib.parse.unquote(s)
     if want_unicode:
         s = s.decode(config.charset)
     return s
@@ -183,7 +183,7 @@ def makeQueryString(qstr=None, want_unicode=False, **kw):
 def quoteWikinameURL(pagename, charset=config.charset):
     """ Return a url encoding of filename in plain ascii
 
-    Use urllib.quote to quote any character that is not always safe.
+    Use urllib.parse.quote to quote any character that is not always safe.
 
     @param pagename: the original pagename (unicode)
     @param charset: url text encoding, 'utf-8' recommended. Other charset
@@ -193,7 +193,7 @@ def quoteWikinameURL(pagename, charset=config.charset):
     @return: the quoted filename, all unsafe characters encoded
     """
     pagename = pagename.encode(charset)
-    return urllib.quote(pagename)
+    return urllib.parse.quote(pagename)
 
 
 def escape(s, quote=0):
@@ -304,7 +304,7 @@ def unquoteWikiname(filename, charsets=[config.charset]):
 
     This function should be used only to unquote file names, not page
     names we receive from the user. These are handled in request by
-    urllib.unquote, decodePagename and normalizePagename.
+    urllib.parse.unquote, decodePagename and normalizePagename.
 
     Todo: search clients of unquoteWikiname and check for exceptions.
 

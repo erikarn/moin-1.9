@@ -172,12 +172,12 @@ class EditLog:
                 timestamp, rev, action, pagename, ip, hostname, userid, extra, comment = fields
                 if action.startswith('ATT'):
                     try:
-                        fname = urllib.unquote(extra).decode('utf-8')
+                        fname = urllib.parse.unquote(extra).decode('utf-8')
                     except UnicodeDecodeError:
-                        fname = urllib.unquote(extra).decode('iso-8859-1')
+                        fname = urllib.parse.unquote(extra).decode('iso-8859-1')
                     if ('FILE', pagename, fname) in self.renames:
                         fname = self.renames[('FILE', pagename, fname)]
-                    extra = urllib.quote(fname.encode('utf-8'))
+                    extra = urllib.parse.quote(fname.encode('utf-8'))
                 if ('PAGE', pagename) in self.renames:
                     pagename = self.renames[('PAGE', pagename)]
                 timestamp = str(timestamp)
