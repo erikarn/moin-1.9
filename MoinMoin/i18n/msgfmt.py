@@ -152,7 +152,7 @@ def make(filename, outfile):
     mf = MsgFmt()
     infile, outfile = mf.make_filenames(filename, outfile)
     try:
-        lines = file(infile).readlines()
+        lines = open(infile).readlines()
     except IOError as msg:
         print(msg, file=sys.stderr)
         sys.exit(1)

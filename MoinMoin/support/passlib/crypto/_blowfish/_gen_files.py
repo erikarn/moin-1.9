@@ -148,7 +148,7 @@ def write_expand_function(write, indent=0):
 
 def main():
     target = os.path.join(os.path.dirname(__file__), "unrolled.py")
-    fh = file(target, "w")
+    fh = open(target, "w")
 
     def write(indent, msg, **kwds):
         literal = kwds.pop("literal", False)

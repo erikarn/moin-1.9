@@ -1977,7 +1977,7 @@ class CryptContext(object):
     ##            raise EnvironmentError("failed to read existing file")
     ##        parser.remove_section(section)
     ##    self._write_to_parser(parser, section)
-    ##    fh = file(path, "w")
+    ##    fh = open(path, "w")
     ##    parser.write(fh)
     ##    fh.close()
 

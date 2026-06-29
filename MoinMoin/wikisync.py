@@ -457,7 +457,7 @@ class PickleTagStore(AbstractTagStore):
     def load(self):
         """ Loads the tags from the data file. """
         try:
-            datafile = file(self.filename, "rb")
+            datafile = open(self.filename, "rb")
             self.tags = pickle.load(datafile)
         except (IOError, EOFError):
             self.tags = []
@@ -466,7 +466,7 @@ class PickleTagStore(AbstractTagStore):
 
     def commit(self):
         """ Writes the memory contents to the data file. """
-        datafile = file(self.filename, "wb")
+        datafile = open(self.filename, "wb")
         pickle.dump(self.tags, datafile, pickle.HIGHEST_PROTOCOL)
         datafile.close()
 

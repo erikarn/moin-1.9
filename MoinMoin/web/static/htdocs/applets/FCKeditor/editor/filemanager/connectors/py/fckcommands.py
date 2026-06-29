@@ -173,7 +173,7 @@ class UploadFileCommandMixin (object):
 						errorNo= 201 # file renamed
 					else:
 						# Read file contents and write to the desired path (similar to php's move_uploaded_file)
-						fout = file(newFilePath, 'wb')
+						fout = open(newFilePath, 'wb')
 						while (True):
 							chunk = newFile.file.read(100000)
 							if not chunk: break
