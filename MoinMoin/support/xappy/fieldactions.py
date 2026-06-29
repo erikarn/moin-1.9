@@ -409,7 +409,7 @@ class FieldActions(object):
         - `context` is an ActionContext object used to keep state in.
 
         """
-        for type, actionlist in self._actions.iteritems():
+        for type, actionlist in self._actions.items():
             info = self._action_info[type]            
             for kwargs in actionlist:
                 info[2](self._fieldname, doc, value, context, **kwargs)

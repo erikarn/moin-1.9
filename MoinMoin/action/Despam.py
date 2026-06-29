@@ -54,7 +54,7 @@ def show_editors(request, pagename, timestamp):
             pages[line.pagename] = 1
             editors[editor] = editors.get(editor, 0) + 1
 
-    editors = [(nr, editor) for editor, nr in editors.iteritems()]
+    editors = [(nr, editor) for editor, nr in editors.items()]
     editors.sort()
     editors.reverse()
 

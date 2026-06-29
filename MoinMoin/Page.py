@@ -1190,7 +1190,7 @@ class Page(object):
                             'switch_link': ''.join([
                                 request.formatter.url(1, request.getQualifiedURL(
                                    self.url(request, dict([i for i in
-                                   request.values.iteritems()
+                                   request.values.items()
                                    if i[0] != 'highlight'])))),
                                 _(u"Switch to non-highlighted view"),
                                 request.formatter.url(0)

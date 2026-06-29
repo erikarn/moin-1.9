@@ -211,7 +211,7 @@ def addLowerCaseKeys(cache):
     for attrname in CACHED_USER_ATTRS:
         attr2id = c[attrname]
         attr2id_lower = c[attrname + "_lower"] = {}
-        for key, value in attr2id.iteritems():
+        for key, value in attr2id.items():
             attr2id_lower[key.lower()] = value
     return c
 

@@ -305,7 +305,7 @@ class Formatter(FormatterBase):
 
     def _check_attrs(self, attrs):
         result = {}
-        for name, value in attrs.iteritems():
+        for name, value in attrs.items():
             result[str(name)] = value
         return result
 

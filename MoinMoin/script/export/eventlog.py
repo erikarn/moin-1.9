@@ -59,7 +59,7 @@ General syntax: moin [options] export eventlog [eventlog-options]
             referrer = kv.pop('HTTP_REFERER', '')
             kv.update(dict(time=unicode(time), event=event, ip=ip, referrer=referrer, ua=ua))
             # csv can't handle unicode, encode to utf-8:
-            kv = dict([(k, v.encode('utf-8')) for k, v in kv.iteritems()])
+            kv = dict([(k, v.encode('utf-8')) for k, v in kv.items()])
             csv_out.writerow(kv)
         csv_file.close()
 

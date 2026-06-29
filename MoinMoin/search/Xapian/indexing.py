@@ -62,7 +62,7 @@ class MoinSearchConnection(xappy.SearchConnection):
         """
         Return all the documents in the index (that match the field=value kwargs given).
         """
-        field_queries = [self.query_field(field, value) for field, value in fields.iteritems()]
+        field_queries = [self.query_field(field, value) for field, value in fields.items()]
         query = self.query_composite(self.OP_AND, field_queries)
         return self.get_all_documents(query)
 
@@ -264,12 +264,12 @@ class XapianIndex(BaseIndex):
         if multivalued_fields is None:
             multivalued_fields = {}
 
-        for field, value in fields.iteritems():
+        for field, value in fields.items():
             document.fields.append(xappy.Field(field, value))
             if field in fields_to_stem:
                 document.fields.append(StemmedField(field, value, request))
 
-        for field, values in multivalued_fields.iteritems():
+        for field, values in multivalued_fields.items():
             for value in values:
                 document.fields.append(xappy.Field(field, value))
 

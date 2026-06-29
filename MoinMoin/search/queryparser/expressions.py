@@ -145,7 +145,7 @@ class BaseExpression(object):
                             queries.append(connection.query_field(field_to_check, term))
             else:
                 # Check all fields
-                for field, terms in data.iteritems():
+                for field, terms in data.items():
                     for term in terms:
                         if self.search_re.match(term):
                             queries.append(connection.query_field(field_to_check, term))
