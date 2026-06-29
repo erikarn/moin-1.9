@@ -42,10 +42,12 @@ logging = log.getLogger(__name__)
 from MoinMoin import config, caching, user, util, wikiutil
 from MoinMoin.logfile import eventlog
 
+class CacheNeedsUpdate(Exception):
+    pass
+
 def is_cache_exception(e):
     args = e.args
     return not (len(args) != 1 or args[0] != 'CacheNeedsUpdate')
-
 
 class ItemCache:
     """ Cache some page item related data, as meta data or pagelist
@@ -1451,11 +1453,11 @@ class Page(object):
             macro_obj = Macro(parser)
             # Fix __file__ when running from a zip package
             import MoinMoin
-            if hasattr(MoinMoin, '__loader__'):
+            if hasattr(MoinMoin, '__loader__') and hasattr(MoinMoin.__loader__, 'archive'):
                 __file__ = os.path.join(MoinMoin.__loader__.archive, 'dummy')
             try:
                 exec(code)
-            except "CacheNeedsUpdate": # convert the exception
+            except CacheNeedsUpdate: # convert the exception
                 raise Exception("CacheNeedsUpdate")
         finally:
             request.clock.stop("Page.execute")
