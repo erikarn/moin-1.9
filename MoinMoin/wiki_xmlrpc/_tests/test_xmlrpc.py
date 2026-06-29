@@ -1,6 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 """
-    MoinMoin - tests for the xmlrpc module
+    MoinMoin - tests for the wiki_xmlrpc module
 
     @copyright: 2007 by Karol Nowak <grywacz@gmail.com>
     @license: GNU GPL, see COPYING for details.
@@ -9,11 +9,11 @@
 from xmlrpc.client import Fault
 
 from MoinMoin.user import User
-from MoinMoin.xmlrpc import XmlRpcBase
+from MoinMoin.wiki_xmlrpc import XmlRpcBase
 
 
 def test_fault_serialization(request):
-    """test MoinMoin.xmlrpc.xmlrpc_system_multicall Fault serialization"""
+    """test MoinMoin.wiki_xmlrpc.xmlrpc_system_multicall Fault serialization"""
 
     def xmlrpc_return_fault():
         return Fault(666, "Fault description")
@@ -35,5 +35,5 @@ def test_getAuthToken(request):
     xmlrpc = XmlRpcBase(request)
     assert xmlrpc.xmlrpc_getAuthToken("Foo", "bar") == ""
 
-coverage_modules = ['MoinMoin.xmlrpc']
+coverage_modules = ['MoinMoin.wiki_xmlrpc']
 

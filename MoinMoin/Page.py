@@ -546,7 +546,7 @@ class Page(object):
             Note: if you ask about a deleted revision, it will report timestamp and editor
                   for the delete action (in the edit-log, this is just a SAVE).
 
-        This is used by MoinMoin/xmlrpc/__init__.py.
+        This is used by MoinMoin/wiki_xmlrpc/__init__.py.
 
         @rtype: dict
         @return: timestamp and editor information
