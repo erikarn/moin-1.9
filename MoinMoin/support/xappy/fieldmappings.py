@@ -60,10 +60,10 @@ class FieldMappings(object):
         'XA'
         >>> maps._genPrefix()
         'XB'
-        >>> [maps._genPrefix() for i in xrange(60)]
+        >>> [maps._genPrefix() for i in range(60)]
         ['XC', 'XD', 'XE', 'XF', 'XG', 'XH', 'XI', 'XJ', 'XK', 'XL', 'XM', 'XN', 'XO', 'XP', 'XQ', 'XR', 'XS', 'XT', 'XU', 'XV', 'XW', 'XX', 'XY', 'XZ', 'XAA', 'XBA', 'XCA', 'XDA', 'XEA', 'XFA', 'XGA', 'XHA', 'XIA', 'XJA', 'XKA', 'XLA', 'XMA', 'XNA', 'XOA', 'XPA', 'XQA', 'XRA', 'XSA', 'XTA', 'XUA', 'XVA', 'XWA', 'XXA', 'XYA', 'XZA', 'XAB', 'XBB', 'XCB', 'XDB', 'XEB', 'XFB', 'XGB', 'XHB', 'XIB', 'XJB']
         >>> maps = FieldMappings()
-        >>> [maps._genPrefix() for i in xrange(27*26 + 5)][-10:]
+        >>> [maps._genPrefix() for i in range(27*26 + 5)][-10:]
         ['XVZ', 'XWZ', 'XXZ', 'XYZ', 'XZZ', 'XAAA', 'XBAA', 'XCAA', 'XDAA', 'XEAA']
         """
         res = []

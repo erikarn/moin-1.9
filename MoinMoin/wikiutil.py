@@ -1988,11 +1988,12 @@ def parseAttributes(request, attrstring, endtoken=None, extension=None):
     @rtype: dict, msg
     @return: a dict plus a possible error message
     """
-    import shlex, StringIO
+    import shlex
+    from io import StringIO
 
     _ = request.getText
 
-    parser = shlex.shlex(StringIO.StringIO(attrstring))
+    parser = shlex.shlex(StringIO(attrstring))
     parser.commenters = ''
     msg = None
     attrs = {}

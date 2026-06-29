@@ -122,6 +122,6 @@ def random_string(length, allowed_chars=None):
         @return: random string
     """
     if allowed_chars is None:
-        return ''.join([chr(random.randint(0, 255)) for dummy in xrange(length)])
+        return ''.join([chr(random.randint(0, 255)) for dummy in range(length)])
 
-    return ''.join([random.choice(allowed_chars) for dummy in xrange(length)])
+    return ''.join([random.choice(allowed_chars) for dummy in range(length)])

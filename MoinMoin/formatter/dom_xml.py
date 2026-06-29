@@ -47,7 +47,7 @@ class Formatter(FormatterBase):
         #'pre': ['p'],
         }
 
-    for i in xrange(2, 7):
+    for i in range(2, 7):
         close_on_open['h%i' % i] = close_on_open['h1']
 
     # if key tag is closed, auto-close all tags in value list if they are open

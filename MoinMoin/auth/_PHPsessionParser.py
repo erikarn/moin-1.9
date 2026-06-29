@@ -28,7 +28,7 @@ class UnknownObject(object):
 def transformList(items):
     """ Transforms a list [1, 2, 3, 4, ...] into a
         [(1, 2), (3, 4), ...] generator. """
-    for i in xrange(0, len(items), 2):
+    for i in range(0, len(items), 2):
         yield (items[i], items[i+1])
     raise StopIteration
 

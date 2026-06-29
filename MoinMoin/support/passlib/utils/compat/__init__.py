@@ -223,7 +223,7 @@ else:
 #=============================================================================
 # iteration helpers
 #
-# irange - range iterable / view (xrange under py2, range under py3)
+# irange - range iterable / view (range under py2, range under py3)
 # lrange - range list (range under py2, list(range()) under py3)
 #
 # imap - map to iterator
@@ -249,7 +249,7 @@ if PY3:
     izip = zip
 
 else:
-    irange = xrange
+    irange = range
     ##lrange = range
 
     lmap = map

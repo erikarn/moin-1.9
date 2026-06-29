@@ -144,7 +144,7 @@ class Rules:
                            self.escape, self.char]
         if wiki_words:
             import unicodedata
-            up_case = u''.join(unichr(i) for i in xrange(sys.maxunicode)
+            up_case = u''.join(unichr(i) for i in range(sys.maxunicode)
                                if unicodedata.category(unichr(i))=='Lu')
             self.wiki = ur'''(?P<wiki>[%s]\w+[%s]\w+)''' % (up_case, up_case)
             inline_elements.insert(3, self.wiki)

@@ -74,7 +74,7 @@ class TestIdIdempotency:
         def _verify(formatter, id):
             origid = formatter.sanitize_to_id(id)
             id = origid
-            for i in xrange(3):
+            for i in range(3):
                 id = formatter.sanitize_to_id(id)
                 assert id == origid
 

@@ -349,7 +349,7 @@ def terminal_encoding(term):
 
 if sys.version_info < (3, 0):
     unichr = unichr
-    xrange = xrange
+    range = range
     string_types = (str, unicode)
     text_type = unicode
     u_prefix = 'u'
@@ -362,7 +362,7 @@ if sys.version_info < (3, 0):
     BytesIO = cStringIO.StringIO
 else:
     unichr = chr
-    xrange = range
+    range = range
     string_types = (str,)
     text_type = str
     u_prefix = ''

@@ -302,7 +302,7 @@ class SearchResults(object):
         nottophits = []
 
         clusterstarts = dict(((c[0], None) for c in clusters.values()))
-        for i in xrange(self.endrank):
+        for i in range(self.endrank):
             if i in clusterstarts:
                 tophits.append(i)
             else:
@@ -369,7 +369,7 @@ class SearchResults(object):
         sim_count = 0
         new_order = []
         end = min(self.endrank, maxcount)
-        for i in xrange(end):
+        for i in range(end):
             if full:
                 new_order.append(i)
                 continue
@@ -1527,7 +1527,7 @@ class SearchConnection(object):
         ends a prefix, even if followed by capital letters.
         
         """
-        for p in xrange(len(term)):
+        for p in range(len(term)):
             if term[p].islower():
                 return term[:p]
             elif term[p] == 'R':

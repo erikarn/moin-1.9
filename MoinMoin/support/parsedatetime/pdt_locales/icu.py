@@ -8,7 +8,7 @@ All of the included locale classes shipped with pdt.
 import datetime
 
 try:
-    range = xrange
+    range = range
 except NameError:
     pass
 

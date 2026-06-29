@@ -298,7 +298,7 @@ class SlideshowAction:
     def item_slides(self):
         if self.slideNumber is None:
             slides = []
-            for n in xrange(0, len(self.page)):
+            for n in range(0, len(self.page)):
                 slides.append(slide_template % {
                     'slide_title' : self.item_slide_title(n + 1),
                     'slide_body' : self.item_slide_body(n + 1)

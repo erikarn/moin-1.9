@@ -510,7 +510,7 @@ class SearchResults(object):
 
             # Get the index of the first match completely within the
             # context.
-            for j in xrange(0, len(matches)):
+            for j in range(0, len(matches)):
                 if matches[j].start >= start:
                     break
 
@@ -569,7 +569,7 @@ class SearchResults(object):
         header = page.page.getPageHeader()
         start = len(header)
         # Find first match after start
-        for i in xrange(len(matches)):
+        for i in range(len(matches)):
             if matches[i].start >= start and \
                     isinstance(matches[i], TextMatch):
                 return i, start

@@ -171,7 +171,7 @@ def text(pagename, request, params=''):
     sd = 0.0
     cnt = 0
 
-    for i in xrange(len(days)-1, -1, -1):
+    for i in range(len(days)-1, -1, -1):
         d, v, e = days[i], views[i], edits[i]
         # sum up views and edits to step days
         sd += 1
