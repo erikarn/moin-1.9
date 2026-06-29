@@ -150,7 +150,7 @@ def _create_form(request):
     td.append(html.INPUT(type="submit", name="create",
                          value=_('Create Profile')))
 
-    return unicode(ret)
+    return str(ret)
 
 def execute(pagename, request):
     found = False

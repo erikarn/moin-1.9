@@ -793,7 +793,7 @@ class User:
             elif isinstance(value, dict):
                 key += '{}'
                 value = encodeDict(value)
-            line = u"%s=%s" % (key, unicode(value))
+            line = u"%s=%s" % (key, str(value))
             line = line.replace('\n', ' ').replace('\r', ' ') # no lineseps
             data.write(line + '\n')
         data.close()
@@ -855,7 +855,7 @@ class User:
         """
         if self.valid:
             interwikiname = self._cfg.interwikiname or u''
-            bookmark = unicode(tm)
+            bookmark = str(tm)
             self.bookmarks[interwikiname] = bookmark
             self.save()
 
